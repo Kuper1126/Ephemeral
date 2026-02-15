@@ -27,116 +27,100 @@
 <body class="bg-black text-white">
 
   <!-- NAVBAR -->
-  <nav class="bg-white shadow-md py-4 border-b border-zinc-800">
-    <div class="max-w-6xl mx-auto flex items-center justify-between px-4">
-      
-      <img src="images/LogoLetras.png" alt="Logo letras EPHEMERAL" loading="lazy" class="h-12 object-contain">
-
-      <h1 class="text-3xl font-bold tracking-wide text-black">
-        CATÁLOGO 2026
-      </h1>
-
-      <img src="images/LogoCompleto.png" alt="Logo completo EPHEMERAL" loading="lazy" class="h-12 object-contain">
-
+<nav class="bg-white shadow-md py-4 border-b border-zinc-800">
+  <div class="max-w-6xl mx-auto px-4">
+    
+    <!-- Versión móvil -->
+    <div class="flex md:hidden flex-col items-center gap-3">
+      <img src="images/LogoCompleto.png" alt="Logo EPHEMERAL" loading="lazy" class="h-12 object-contain">
+      <h1 class="text-xl font-bold tracking-wide text-black">CATÁLOGO 2026</h1>
     </div>
-  </nav>
+
+    <!-- Versión desktop -->
+    <div class="hidden md:flex items-center justify-between">
+      <img src="images/LogoLetras.png" alt="Logo letras EPHEMERAL" loading="lazy" class="h-12 object-contain">
+      <h1 class="text-3xl font-bold tracking-wide text-black">CATÁLOGO 2026</h1>
+      <img src="images/LogoCompleto.png" alt="Logo completo EPHEMERAL" loading="lazy" class="h-12 object-contain">
+    </div>
+
+  </div>
+</nav>
 
   <!-- CONTENIDO -->
   <section class="max-w-6xl mx-auto py-12 px-4">
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-      <!-- PRODUCTO 1 -->
-      <div class="bg-zinc-900 rounded-2xl shadow-lg p-4 hover:scale-105 transition duration-300">
-
-        <img id="principal1" 
-             src="images/Sueter1.jpg"
-             alt="Suéter Modelo 1"
-             loading="lazy"
-             class="rounded-xl mb-4 w-full h-[350px] object-cover transition duration-300">
-
-        <div class="flex gap-3 mb-4 justify-center">
-
-          <img src="images/Sueter1.jpg"
-               alt="Vista 1 Suéter Modelo 1"
-               loading="lazy"
-               class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
-               onclick="cambiarImagen('principal1', 'images/Sueter1.jpg')">
-
-          <img src="images/Sueter1.1.jpg"
-               alt="Vista 2 Suéter Modelo 1"
-               loading="lazy"
-               class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
-               onclick="cambiarImagen('principal1', 'images/Sueter1.1.jpg')">
-
-        </div>
-
-        <h3 class="text-lg font-semibold">Suéter Modelo 1</h3>
-        <p class="text-gray-400 mb-3">$450 MXN</p>
-
-        <button type="button"
-        onclick="enviarWhatsApp('Sueter Modelo 1')" 
-        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-        Pedir por WhatsApp
-        </button>
-
-      </div>
-
-      <!-- PRODUCTO 2 -->
-      <div class="bg-zinc-900 rounded-2xl shadow-lg p-4 hover:scale-105 transition duration-300">
-
-        <img id="principal2" 
-             src="images/Sueter2.jpg"
-             alt="Suéter Modelo 2"
-             loading="lazy"
-             class="rounded-xl mb-4 w-full h-[350px] object-cover transition duration-300">
-
-        <div class="flex gap-3 mb-4 justify-center">
-
-          <img src="images/Sueter2.jpg"
-               alt="Vista 1 Suéter Modelo 2"
-               loading="lazy"
-               class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
-               onclick="cambiarImagen('principal2', 'images/Sueter2.jpg')">
-
-          <img src="images/Sueter2.1.jpg"
-               alt="Vista 2 Suéter Modelo 2"
-               loading="lazy"
-               class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
-               onclick="cambiarImagen('principal2', 'images/Sueter2.1.jpg')">
-
-        </div>
-
-        <h3 class="text-lg font-semibold">Suéter Modelo 2</h3>
-        <p class="text-gray-400 mb-3">$450 MXN</p>
-
-        <button type="button"
-        onclick="enviarWhatsApp('Sueter Modelo 2')" 
-        class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
-        Pedir por WhatsApp
-        </button>
-
-      </div>
-
+    <div id="productos-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <!-- Los productos se cargarán aquí automáticamente -->
     </div>
 
   </section>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT PARA CARGAR PRODUCTOS -->
   <script>
+    // Función para cargar productos desde JSON
+    async function cargarProductos() {
+      try {
+        const response = await fetch('productos.json');
+        const productos = await response.json();
+        
+        const container = document.getElementById('productos-container');
+        
+        productos.forEach(producto => {
+          const productoHTML = `
+            <div class="bg-zinc-900 rounded-2xl shadow-lg p-4 hover:scale-105 transition duration-300">
+
+              <img id="principal${producto.id}" 
+                   src="${producto.imagenes[0]}"
+                   alt="${producto.nombre}"
+                   loading="lazy"
+                   class="rounded-xl mb-4 w-full h-[350px] object-cover transition duration-300">
+
+              <div class="flex gap-3 mb-4 justify-center">
+                ${producto.imagenes.map((img, index) => `
+                  <img src="${img}"
+                       alt="Vista ${index + 1} ${producto.nombre}"
+                       loading="lazy"
+                       class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
+                       onclick="cambiarImagen('principal${producto.id}', '${img}')">
+                `).join('')}
+              </div>
+
+              <h3 class="text-lg font-semibold">${producto.nombre}</h3>
+              <p class="text-gray-400 mb-3">$${producto.precio} MXN</p>
+
+              <button type="button"
+                      onclick="enviarWhatsApp('${producto.nombre}')" 
+                      class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
+                Pedir por WhatsApp
+              </button>
+
+            </div>
+          `;
+          
+          container.innerHTML += productoHTML;
+        });
+        
+      } catch (error) {
+        console.error('Error al cargar productos:', error);
+      }
+    }
+
+    // Función para cambiar imagen principal
     function cambiarImagen(id, nuevaSrc) {
       document.getElementById(id).src = nuevaSrc;
     }
-  </script>
 
-<script>
-  function enviarWhatsApp(nombreProducto) {
-    const numero = "523241014030"; // México (52)
-    const mensaje = `Hola, me interesa el ${nombreProducto}`;
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, "_blank");
-  }
-</script>
+    // Función para WhatsApp
+    function enviarWhatsApp(nombreProducto) {
+      const numero = "523241050666";
+      const mensaje = `Hola, me interesa el ${nombreProducto}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank");
+    }
+
+    // Cargar productos al cargar la página
+    window.addEventListener('DOMContentLoaded', cargarProductos);
+  </script>
 
 <!-- FOOTER -->
 <footer class="bg-white text-black mt-24 border-t border-gray-200">
