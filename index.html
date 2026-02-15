@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catálogo 2026 EPHEMERAL - Ropa deportiva exclusiva con calidad y estilo.">
+
   <title>Catálogo 2026</title>
+
+  <!-- Preconnect Fuente -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,16 +30,13 @@
   <nav class="bg-white shadow-md py-4 border-b border-zinc-800">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4">
       
-      <!-- Logo izquierdo -->
-      <img src="images/LogoLetras.png" class="h-12 object-contain">
+      <img src="images/LogoLetras.png" alt="Logo letras EPHEMERAL" loading="lazy" class="h-12 object-contain">
 
-      <!-- Título -->
       <h1 class="text-3xl font-bold tracking-wide text-black">
         CATÁLOGO 2026
       </h1>
 
-      <!-- Logo derecho -->
-      <img src="images/LogoCompleto.png" class="h-12 object-contain">
+      <img src="images/LogoCompleto.png" alt="Logo completo EPHEMERAL" loading="lazy" class="h-12 object-contain">
 
     </div>
   </nav>
@@ -46,19 +49,23 @@
       <!-- PRODUCTO 1 -->
       <div class="bg-zinc-900 rounded-2xl shadow-lg p-4 hover:scale-105 transition duration-300">
 
-        <!-- Imagen principal -->
         <img id="principal1" 
              src="images/Sueter1.jpg"
+             alt="Suéter Modelo 1"
+             loading="lazy"
              class="rounded-xl mb-4 w-full h-[350px] object-cover transition duration-300">
 
-        <!-- Miniaturas -->
         <div class="flex gap-3 mb-4 justify-center">
 
           <img src="images/Sueter1.jpg"
+               alt="Vista 1 Suéter Modelo 1"
+               loading="lazy"
                class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
                onclick="cambiarImagen('principal1', 'images/Sueter1.jpg')">
 
           <img src="images/Sueter1.1.jpg"
+               alt="Vista 2 Suéter Modelo 1"
+               loading="lazy"
                class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
                onclick="cambiarImagen('principal1', 'images/Sueter1.1.jpg')">
 
@@ -67,30 +74,34 @@
         <h3 class="text-lg font-semibold">Suéter Modelo 1</h3>
         <p class="text-gray-400 mb-3">$450 MXN</p>
 
-        <button onclick="enviarWhatsApp('Sueter Modelo 1')" 
+        <button type="button"
+        onclick="enviarWhatsApp('Sueter Modelo 1')" 
         class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
         Pedir por WhatsApp
         </button>
 
-
       </div>
 
- <!-- PRODUCTO 2 -->
+      <!-- PRODUCTO 2 -->
       <div class="bg-zinc-900 rounded-2xl shadow-lg p-4 hover:scale-105 transition duration-300">
 
-        <!-- Imagen principal -->
         <img id="principal2" 
              src="images/Sueter2.jpg"
+             alt="Suéter Modelo 2"
+             loading="lazy"
              class="rounded-xl mb-4 w-full h-[350px] object-cover transition duration-300">
 
-        <!-- Miniaturas -->
         <div class="flex gap-3 mb-4 justify-center">
 
           <img src="images/Sueter2.jpg"
+               alt="Vista 1 Suéter Modelo 2"
+               loading="lazy"
                class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
                onclick="cambiarImagen('principal2', 'images/Sueter2.jpg')">
 
           <img src="images/Sueter2.1.jpg"
+               alt="Vista 2 Suéter Modelo 2"
+               loading="lazy"
                class="h-16 w-16 object-cover rounded cursor-pointer border border-gray-600 hover:border-white transition"
                onclick="cambiarImagen('principal2', 'images/Sueter2.1.jpg')">
 
@@ -99,11 +110,11 @@
         <h3 class="text-lg font-semibold">Suéter Modelo 2</h3>
         <p class="text-gray-400 mb-3">$450 MXN</p>
 
-        <button onclick="enviarWhatsApp('Sueter Modelo 2')" 
+        <button type="button"
+        onclick="enviarWhatsApp('Sueter Modelo 2')" 
         class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition">
         Pedir por WhatsApp
         </button>
-
 
       </div>
 
@@ -120,30 +131,24 @@
 
 <script>
   function enviarWhatsApp(nombreProducto) {
-    const numero = "3241014030"; // ← Telefono
+    const numero = "523241014030"; // México (52)
     const mensaje = `Hola, me interesa el ${nombreProducto}`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, "_blank");
   }
 </script>
 
-
-
-
-<!-- FOOTER BLANCO BALANCEADO -->
+<!-- FOOTER -->
 <footer class="bg-white text-black mt-24 border-t border-gray-200">
 
   <div class="max-w-7xl mx-auto px-6 py-12 
               grid grid-cols-1 md:grid-cols-3 
               items-center text-center">
 
-    <!-- Columna izquierda -->
     <div class="flex justify-center md:justify-start">
-      <img src="images/Logo.png" 
-           class="h-16 object-contain">
+      <img src="images/Logo.png" alt="Logo EPHEMERAL" loading="lazy" class="h-16 object-contain">
     </div>
 
-    <!-- Columna centro -->
     <div>
       <h3 class="text-xl font-semibold tracking-wide mb-2">
         EPHEMERAL
@@ -151,43 +156,38 @@
       <p class="text-sm text-gray-600">
         Calidad • Estilo • Exclusividad
       </p>
+
       <div class="mt-4 flex items-center justify-center gap-2">
   
-  <a href="https://instagram.com/ephemeral_gym_clothes" 
-     target="_blank"
-     class="flex items-center gap-2 group transition">
+        <a href="https://instagram.com/ephemeral_gym_clothes" 
+           target="_blank"
+           rel="noopener noreferrer"
+           class="flex items-center gap-2 group transition">
 
-    <img src="images/LogoInsta.png" 
-         class="h-5 w-5 object-contain">
+          <img src="images/LogoInsta.png" 
+               alt="Instagram EPHEMERAL"
+               loading="lazy"
+               class="h-5 w-5 object-contain">
 
-    <span class="text-sm text-gray-700 font-medium 
-             border-b border-transparent 
-             group-hover:border-black 
-             transition duration-300">
-      ephemeral_gym_clothes
-    </span>
+          <span class="text-sm text-gray-700 font-medium 
+               border-b border-transparent 
+               group-hover:border-black 
+               transition duration-300">
+            ephemeral_gym_clothes
+          </span>
 
-  </a>
+        </a>
 
-</div>
-
+      </div>
     </div>
 
-    <!-- Columna derecha -->
     <div class="flex justify-center md:justify-end">
-      <img src="images/LogoLetras.png" 
-           class="h-16 object-contain">
+      <img src="images/LogoLetras.png" alt="Logo letras EPHEMERAL" loading="lazy" class="h-16 object-contain">
     </div>
 
   </div>
 
 </footer>
-
-
-
-
-
-
 
 </body>
 </html>
